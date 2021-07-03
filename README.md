@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is about getting a continuous stream of 1000 trackers delayed with 10ms between each tracker information. The server stream will be active for 60 seconds (6 cycles).
+You can update the total number of trackers (TOTAL_TRACKERS) and/or the number of data sent for each tracker (TOTAL_CYCLES) in /web/.env file.
 
-## Available Scripts
+The repository contains 3 projects:
 
-In the project directory, you can run:
+1.  node-server: port 8080
+2.  envoy-proxy: port 9090
+3.  React web application: port 3000
 
-### `yarn start`
+After starting them, the web app will be running at [localhost:3000](http://localhost:3000/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can run all project with docker-compose
 
-### `yarn test`
+```bash
+ $ docker-compose up
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+or you can run each project individually (for development purposes)
 
-### `yarn build`
+1. node-server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ npm install
+$ node server.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. React web application
 
-### `yarn eject`
+I recommend [pnpm](https://pnpm.io/) package manager for several [reasons](https://pnpm.io/benchmark)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ pnpm install
+$ pnpm run start
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+PS. You need to reconfigure the envoy-proxy to communicate the node-server and the web application locally

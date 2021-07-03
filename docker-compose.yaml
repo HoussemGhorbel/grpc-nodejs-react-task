@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  node-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: node-server
+    image: node-server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+  envoy:
+    build:
+      context: ./envoy
+      dockerfile: Dockerfile
+    container_name: envoy
+    image: envoy
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    depends_on:
+      - node-server
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: web
+    image: web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - node-server
+      - envoy
