@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package report;
+
+import "google/type/latlng.proto";
+
+message ReportRequest {
+    int32 totalTrackers = 1;
+    int32 totalCycles = 2;
+}
+    
+message ReportResponse {
+    string id = 1;
+    google.type.LatLng location = 2;
+    float altitude = 3;
+    string name = 4;
+    float speed = 5;
+}
+
+service ReportService {
+    rpc report(ReportRequest) returns (stream ReportResponse);
+}
