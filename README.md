@@ -1,4 +1,4 @@
-# Task
+# grpc-nodejs-react-task
 
 This app is about getting a continuous stream of 1000 trackers delayed with 10ms between each tracker information. The server stream will be active for 60 seconds (6 cycles).
 You can update the total number of trackers (TOTAL_TRACKERS) and/or the number of data sent for each tracker (TOTAL_CYCLES) in /web/.env file.
